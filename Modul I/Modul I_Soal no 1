@@ -13,6 +13,7 @@ int main(){
 	printf("\t|3. Perkalian\t\t\t\t\t|\n");
 	printf("\t|4. Pembagian\t\t\t\t\t|\n");
 	printf("\t|5. Modulus\t\t\t\t\t|\n");
+	printf("\t|6. Exit\t\t\t\t\t|\n");
 	printf("\t+===============================================+\n\n");
 	
 	pilihan:            //identifier pilihan
@@ -72,6 +73,9 @@ int main(){
 			hasil=bil1%bil2;
 			printf("\t------------------------------- %\n");
 		 	printf("\tHasil:\t\t\t   %d\n", hasil);
+			break;
+		case 6 :
+			exit(0);
 			break;
 		default :
 			printf("\tMAAF, PILIHAN ANDA SALAH!\n");
