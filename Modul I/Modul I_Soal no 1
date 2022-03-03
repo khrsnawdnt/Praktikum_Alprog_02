@@ -84,4 +84,5 @@ int main(){
 			system("cls");
 			goto pilihan;      //kembali ke identifier pilihan
 		}
+		return (0);
 }
