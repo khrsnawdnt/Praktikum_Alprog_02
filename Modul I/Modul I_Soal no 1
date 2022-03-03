@@ -1,0 +1,83 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+	int bil1, bil2, pilihan, hasil; 
+	
+  //Tampilan awal program
+	printf("\t+===============================================+\n");
+	printf("\t|==============PROGRAM KALKULATOR===============|\n");
+	printf("\t+===============================================+\n\n");
+	printf("\t|1. Penjumlahan\t\t\t\t\t|\n");
+	printf("\t|2. Pengurangan\t\t\t\t\t|\n");
+	printf("\t|3. Perkalian\t\t\t\t\t|\n");
+	printf("\t|4. Pembagian\t\t\t\t\t|\n");
+	printf("\t|5. Modulus\t\t\t\t\t|\n");
+	printf("\t+===============================================+\n\n");
+	
+	pilihan:            //identifier pilihan
+	printf("\tMasukkan Pilihan: ");
+	scanf("%d", &pilihan);
+	printf("\n");
+	system("cls");
+	
+	switch(pilihan){
+	    case 1 : 
+			printf("\tPENJUMLAHAN\t\t\t\t\n");
+			printf("\tMasukkan Bilangan Pertama: ");
+			scanf("%d", &bil1);
+			printf("\tMasukkan Bilangan Kedua  : ");
+			scanf("%d", &bil2);
+			printf("\t");
+			hasil=bil1+bil2;
+			printf("--------------------------------- +\n");
+			printf("\tHasil:\t\t\t   %d\n", hasil);
+			break;
+		case 2 :
+			printf("\tPENGURANGAN\t\t\t\t\n"); 
+			printf("\tMasukkan Bilangan Pertama: ");
+			scanf("%d", &bil1);
+			printf("\tMasukkan Bilangan Kedua  : ");
+			scanf("%d", &bil2);
+			hasil=bil1-bil2;
+			printf("\t------------------------------- -\n");
+			printf("\tHasil:\t\t\t   %d\n", hasil);
+			break;
+		case 3 : 
+			printf("\tPERKALIAN\t\t\t\t\n");
+			printf("\tMasukkan Bilangan Pertama: ");
+			scanf("%d", &bil1);
+			printf("\tMasukkan Bilangan Kedua  : ");
+			scanf("%d", &bil2);
+			hasil=bil1*bil2;
+			printf("\t------------------------------- x\n");
+			printf("\tHasil:\t\t\t   %d\n", hasil);
+			break;
+		case 4 :
+			printf("\tPEMBAGIAN\t\t\t\t\n");
+			printf("\tMasukkan Bilangan Pertama: ");
+			scanf("%d", &bil1);
+			printf("\tMasukkan Bilangan Kedua  : ");
+			scanf("%d", &bil2);
+			hasil=bil1/bil2;
+			printf("\t------------------------------- :\n");
+			printf("\tHasil:\t\t\t   %d\n", hasil);
+			break;
+		case 5 : 
+			printf("\tMODULUS\t\t\t\t\n");
+			printf("\tMasukkan Bilangan Pertama: ");
+			scanf("%d", &bil1);
+			printf("\tMasukkan Bilangan Kedua  : ");
+			scanf("%d", &bil2);
+			hasil=bil1%bil2;
+			printf("\t------------------------------- %\n");
+		 	printf("\tHasil:\t\t\t   %d\n", hasil);
+			break;
+		default :
+			printf("\tMAAF, PILIHAN ANDA SALAH!\n");
+			printf("\tSILAHKAN INPUT ULANG\n\n");
+			system("pause");         
+			system("cls");
+			goto pilihan;      //kembali ke identifier pilihan
+		}
+}
