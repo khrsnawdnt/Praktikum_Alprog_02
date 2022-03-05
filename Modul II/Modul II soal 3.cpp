@@ -1,7 +1,6 @@
 #include<stdio.h>
-#include<math.h>
 #include<stdlib.h>
-void satu ();
+void satu (); 
 void dua ();
 
 main () {
@@ -38,17 +37,19 @@ int pil,pilih;
 
 void satu ()
 {
-int bil,biner=0,bobot=0;
-	printf("Masukkan Bilangan Desimal : ");
-	scanf("%d",&bil);
-
-	while(bil>0){
-	biner=biner+ bil%2*(int)pow(10,bobot);
-	bil= bil/2;
-	bobot++;
-	}
-
-	printf("Hasil Biner Adalah : %d\n",biner);
+int bil, desi, hasil, basis = 1, biner = 0;
+   
+    printf("Masukan Bilangan Desimal = ");
+    scanf("%d", &bil);
+    desi = bil;
+   	 while (bil>0){
+        hasil= bil%2;
+        biner = biner + hasil*basis;
+        bil=bil/2;
+        basis= basis*10;
+   	 }
+    printf("Hasil Biner adalah = %d\n", biner);
+	
 }
 
 
@@ -68,4 +69,3 @@ desi=0;
 	}
 	printf("Hasil Desimal Adalah: %d\n",desi);
 }
-
