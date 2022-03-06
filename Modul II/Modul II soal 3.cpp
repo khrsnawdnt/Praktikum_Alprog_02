@@ -43,8 +43,8 @@ int bil, desi, hasil, basis = 1, biner = 0;
     scanf("%d", &bil);
     desi = bil;
    	 while (bil>0){
-        hasil= bil%2;
-        biner = biner + hasil*basis;
+        sisa= bil%2;
+        biner = biner + sisa*basis;
         bil=bil/2;
         basis= basis*10;
    	 }
