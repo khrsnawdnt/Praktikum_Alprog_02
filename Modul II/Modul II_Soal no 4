@@ -1,0 +1,159 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+int valid(int *var){
+	char buff[1024];
+	char cek;
+	fflush(stdin);
+	if(fgets(buff, sizeof(buff), stdin) != NULL){
+		if(sscanf(buff, "%d %c", var, &cek) == 1) {
+			return 1;
+		}
+	}
+	return 0;
+}
+
+void koreksi(int *var, char *prompt){
+	while(1){
+		printf(prompt);
+		if(valid(var))
+			break;
+		printf("\tERROR Input hanya berupa angka!!\n");
+		printf("\n");
+	}
+}
+
+
+int cek_valid();
+int cek_valid(){
+	int bilangan;
+	if (scanf("%d", &bilangan) !=1){
+		printf ("\tERROR! PILIHAN ANDA TIDAK VALID!!\n");
+		printf ("\n\tMASUKKAN ULANG JUMLAH YANG DIINGINKAN: ");
+		fflush(stdin);
+		cek_valid();
+	}
+	else{
+		return bilangan;
+	}
+}
+
+void menu()
+{
+	printf("\t+===============================================+\n");
+	printf("\t|\t\tPROGRAM DERET FIBONACCI\t\t|\n");
+	printf("\t+===============================================+\n");
+	printf("\t| Menu Program : \t\t\t\t|\n");
+	printf("\t| [1] Fibonacci Rekursif\t\t\t|\n");
+	printf("\t| [2] Fibonacci Iteratif\t\t\t|\n");
+	printf("\t| [3] Exit\t\t\t\t\t|\n");
+	printf("\t+===============================================+\n");
+}
+	
+int fiboRekursif(int bilangan)
+{
+	if (bilangan == 0 || bilangan == 1)
+	{
+		return bilangan;
+	}
+	return fiboRekursif(bilangan - 2) + fiboRekursif(bilangan - 1);
+	}
+	
+void deretFiboRekursif(int jumlah_deret)
+{
+	int i;
+		for (i = 0; i < jumlah_deret; i++)
+		{
+			printf("\t%d ", fiboRekursif(i));
+		}
+			printf("\n");
+	}
+	
+void deretFiboIteratif(int jumlah_deret)
+{
+	int bilangan1 = 0, bilangan2 = 1;
+	int simpan;
+	int i;
+		for (i = 0; i < jumlah_deret; i++)
+		{
+			if (i == 0 || i == 1)
+			{
+				printf("\t%d ", i);
+			}
+			else
+			{
+				simpan = bilangan1 + bilangan2;
+				bilangan1 = bilangan2;
+				bilangan2 = simpan;
+				printf("\t%d ", simpan);
+			}
+		}
+		printf("\n");
+}
+	
+	
+int main(){
+	char ulang;
+	int pilihan, jumlah_deret;
+	
+		menu();
+		do{
+			koreksi(&pilihan, "\tMasukkan Pilihan Anda [1-3] : ");
+		printf("\n");
+		system("cls");
+		switch(pilihan){
+			case 1: 
+				printf("\tMasukkan jumlah deret yang diinginkan : ");
+				scanf("\t%d", &jumlah_deret);
+				jumlah_deret=cek_valid();
+				deretFiboRekursif(jumlah_deret);
+				printf("\n");
+				printf ("\tIngin Mencoba lagi ? \n"); 
+				printf ("\tYa atau Tidak (Y/T): "); 
+				scanf ("%s", &ulang);
+				if(ulang=='Y'|| ulang=='y'){
+				system("cls");
+				menu();
+				}
+				else{
+					exit(0);
+				}
+				break;
+				
+			case 2:
+				printf("\tMasukkan jumlah deret yang diinginkan : ");	
+				scanf("%d", &jumlah_deret);
+				jumlah_deret=cek_valid();
+				deretFiboIteratif(jumlah_deret);
+				printf("\n");
+				printf ("\tIngin Mencoba lagi ? \n"); 
+				printf ("\tYa atau Tidak (Y/T): "); 
+				scanf ("%s", &ulang);
+				if(ulang=='Y'|| ulang=='y'){
+				system("cls");
+				menu();
+				}
+				else{
+					exit(0);
+				}
+				break;
+			case 3:
+				exit(0);
+				break;
+			default :
+				printf("\tMAAF, PILIHAN ANDA SALAH!\n");
+				printf("\tSILAHKAN INPUT ULANG\n\n");
+				printf("\tIngin Mengulang?\n");
+				printf ("\tYa atau Tidak (Y/T): "); 
+				scanf ("%s", &ulang);
+				if(ulang=='Y'|| ulang=='y'){
+				system("cls");
+				}
+				else{
+					exit(0);
+				}
+			}
+		}
+		while(ulang=='y'||ulang=='Y');		
+	}
