@@ -163,6 +163,7 @@ int main(){
 			}
 			break;
 		case 6 :
+			printf("\tTerima Kasih Telah Menggunakan Program ini!\n");
 			exit(0);
 			break;
 		default :
