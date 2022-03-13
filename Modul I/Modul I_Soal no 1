@@ -1,8 +1,53 @@
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 
+//validasi bilangan string
+int valid(int *var){
+	char buff[1024];
+	char cek;
+	fflush(stdin);
+	if(fgets(buff, sizeof(buff), stdin) != NULL){
+		if(sscanf(buff, "%d %c", var, &cek) == 1) {
+			return 1;
+		}
+	}
+	return 0;
+}
+
+//validasi bilangan string pada fungsi utama
+void koreksi(int *var, char *prompt){
+	while(1){
+		printf(prompt);
+		if(valid(var))
+			break;
+		printf("\tERROR Input hanya berupa angka!!\n");
+		printf("\n");
+	}
+}
+
+//validasi bilangan string pada submenu
+int cek_valid();
+int cek_valid(){
+	int bilangan;
+    char huruf;
+    scanf("%d%c", &bilangan,&huruf);
+    if(huruf != '\n' || bilangan<0){
+        printf("\tERROR! Input hanya berupa angka!!\n");
+        printf("\n\tMasukan Ulang Bilangan yang benar : ");
+        fflush(stdin);
+        cek_valid();
+    }
+	else{
+        return bilangan;
+    }
+}
+
+//fungsi utama
 int main(){
 	int bil1, bil2, pilihan, hasil; 
+	char ulang;
+	int menu;
 	
   //Tampilan awal program
 	printf("\t+===============================================+\n");
@@ -16,63 +61,106 @@ int main(){
 	printf("\t|6. Exit\t\t\t\t\t|\n");
 	printf("\t+===============================================+\n\n");
 	
-	pilihan:            //identifier pilihan
-	printf("\tMasukkan Pilihan: ");
-	scanf("%d", &pilihan);
+	do{
+		koreksi(&pilihan, "\tMasukkan Pilihan Anda [1-6] : ");
 	printf("\n");
 	system("cls");
-	
 	switch(pilihan){
 	    case 1 : 
 			printf("\tPENJUMLAHAN\t\t\t\t\n");
 			printf("\tMasukkan Bilangan Pertama: ");
-			scanf("%d", &bil1);
+			bil1=cek_valid();
 			printf("\tMasukkan Bilangan Kedua  : ");
-			scanf("%d", &bil2);
+			bil2=cek_valid();
 			printf("\t");
 			hasil=bil1+bil2;
 			printf("--------------------------------- +\n");
 			printf("\tHasil:\t\t\t   %d\n", hasil);
+			printf ("\n\tIngin Mencoba lagi ? \n"); 
+			printf ("\tYa atau Tidak (Y/T): "); 
+			scanf ("%s", &ulang);
+			if(ulang=='Y'|| ulang=='y'){
+			system("cls");
+			}
+			else{
+				exit(0);
+			}
 			break;
 		case 2 :
 			printf("\tPENGURANGAN\t\t\t\t\n"); 
 			printf("\tMasukkan Bilangan Pertama: ");
-			scanf("%d", &bil1);
+			bil1=cek_valid();
 			printf("\tMasukkan Bilangan Kedua  : ");
-			scanf("%d", &bil2);
+			bil2=cek_valid();
 			hasil=bil1-bil2;
 			printf("\t------------------------------- -\n");
 			printf("\tHasil:\t\t\t   %d\n", hasil);
+			printf ("\n\tIngin Mencoba lagi ? \n"); 
+			printf ("\tYa atau Tidak (Y/T): "); 
+			scanf ("%s", &ulang);
+			if(ulang=='Y'|| ulang=='y'){
+			system("cls");
+			}
+			else{
+				exit(0);
+			}
 			break;
 		case 3 : 
 			printf("\tPERKALIAN\t\t\t\t\n");
 			printf("\tMasukkan Bilangan Pertama: ");
-			scanf("%d", &bil1);
+			bil1=cek_valid();
 			printf("\tMasukkan Bilangan Kedua  : ");
-			scanf("%d", &bil2);
+			bil2=cek_valid();
 			hasil=bil1*bil2;
 			printf("\t------------------------------- x\n");
 			printf("\tHasil:\t\t\t   %d\n", hasil);
+			printf ("\n\tIngin Mencoba lagi ? \n"); 
+			printf ("\tYa atau Tidak (Y/T): "); 
+			scanf ("%s", &ulang);
+			if(ulang=='Y'|| ulang=='y'){
+			system("cls");
+			}
+			else{
+				exit(0);
+			}
 			break;
 		case 4 :
 			printf("\tPEMBAGIAN\t\t\t\t\n");
 			printf("\tMasukkan Bilangan Pertama: ");
-			scanf("%d", &bil1);
+			bil1=cek_valid();
 			printf("\tMasukkan Bilangan Kedua  : ");
-			scanf("%d", &bil2);
+			bil2=cek_valid();
 			hasil=bil1/bil2;
 			printf("\t------------------------------- :\n");
 			printf("\tHasil:\t\t\t   %d\n", hasil);
+			printf ("\n\tIngin Mencoba lagi ? \n"); 
+			printf ("\tYa atau Tidak (Y/T): "); 
+			scanf ("%s", &ulang);
+			if(ulang=='Y'|| ulang=='y'){
+			system("cls");
+			}
+			else{
+				exit(0);
+			}
 			break;
 		case 5 : 
 			printf("\tMODULUS\t\t\t\t\n");
 			printf("\tMasukkan Bilangan Pertama: ");
-			scanf("%d", &bil1);
+			bil1=cek_valid();
 			printf("\tMasukkan Bilangan Kedua  : ");
-			scanf("%d", &bil2);
+			bil2=cek_valid();
 			hasil=bil1%bil2;
 			printf("\t------------------------------- %\n");
 		 	printf("\tHasil:\t\t\t   %d\n", hasil);
+			printf ("\n\tIngin Mencoba lagi ? \n"); 
+			printf ("\tYa atau Tidak (Y/T): "); 
+			scanf ("%s", &ulang);
+			if(ulang=='Y'|| ulang=='y'){
+			system("cls");
+			}
+			else{
+				exit(0);
+			}
 			break;
 		case 6 :
 			exit(0);
@@ -80,9 +168,18 @@ int main(){
 		default :
 			printf("\tMAAF, PILIHAN ANDA SALAH!\n");
 			printf("\tSILAHKAN INPUT ULANG\n\n");
-			system("pause");         
+			printf("\tIngin Mengulang?\n");
+			printf ("\tYa atau Tidak (Y/T): "); 
+			scanf ("%s", &ulang);
+			if(ulang=='Y'|| ulang=='y'){
 			system("cls");
-			goto pilihan;      //kembali ke identifier pilihan
+			}
+			else{
+				exit(0);
+			}
 		}
-		return (0);
+	}
+	while(ulang=='y'||ulang=='Y');
+	
+	return (0);
 }
