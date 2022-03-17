@@ -65,7 +65,6 @@ void Satu(){
 	printf("2. Menu Utama\n");
 	printf("3. Keluar\n");
 	printf("Pilihan Selanjutnya	: ");
-	scanf("%d", &pilih);
 	pilih=cek_valid();
 	switch (pilih){
 		case 1:
@@ -107,7 +106,6 @@ void Dua (){
 	printf("2. Menu Utama\n");
 	printf("3. Keluar\n");
 	printf("Pilihan Selanjutnya	: ");
-	scanf("%d", &pilih);
 	pilih=cek_valid();
 	switch (pilih){
 		case 1:
