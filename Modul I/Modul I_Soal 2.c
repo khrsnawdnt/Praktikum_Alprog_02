@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <math.h>
 
 void SegitigaSembarang();
@@ -7,35 +8,56 @@ void BelahKetupat();
 void JajarGenjang();
 void Trapesium();
 void Lingkaran();
+void correct(int *var, char *prompt);
+
+char ulang;
 
 int main(){
-	int pilihan;
-	printf ("\t\t Program Bangun Datar\n");
-	printf ("\t\t ________________________\n\n");
-	printf ("\t\t 1. Segitiga Sembarang \n");
-	printf ("\t\t 2. Belah Ketupat\n");
-	printf ("\t\t 3. Jajar Genjang\n");
-	printf ("\t\t 4. Trapesium\n");
-	printf ("\t\t 5. Lingkaran\n");
-	printf ("\t\t Pilih bangun datar untuk dihitung : ");
-	scanf ("%d", &pilihan);
+	do{
 	
-	if (pilihan==1){
-		SegitigaSembarang();
+		int pilihan;
+		system ("cls");
+		printf ("\t\t Program Bangun Datar\n");
+		printf ("\t\t ________________________\n\n");
+		printf ("\t\t 1. Segitiga Sembarang \n");
+		printf ("\t\t 2. Belah Ketupat\n");
+		printf ("\t\t 3. Jajar Genjang\n");
+		printf ("\t\t 4. Trapesium\n");
+		printf ("\t\t 5. Lingkaran\n");
+		printf ("\t\t ________________________\n");
+		printf ("\t\t 0. Exit Program\n\n");
+		correct(&pilihan,"\t\t Pilih bangun datar untuk dihitung : ");
+		
+		if (pilihan==1){
+			SegitigaSembarang();
+		}
+		else if (pilihan==2){
+			BelahKetupat();
+		}
+		else if (pilihan==3){
+			JajarGenjang();
+		}
+		else if (pilihan==4){
+			Trapesium();
+		}
+		else if (pilihan==5){
+			Lingkaran();
+		}
+		else if (pilihan==0){
+			system ("cls");
+			printf ("\n\n\n\t\t\t\t\t Enter 1x untuk keluar\n\n\n");
+			exit(0);
+		}
+		else{
+			system ("cls");
+			printf ("\n\t\t ANGKA TIDAK VALID, Masukkan ulang! (1-5)");
+		}
+		printf ("\n\t\t >> Coba input lagi? (y/t) : "); scanf ("%s", &ulang);
 	}
-	else if (pilihan==2){
-		BelahKetupat();
-	}
-	else if (pilihan==3){
-		JajarGenjang();
-	}
-	else if (pilihan==4){
-		Trapesium();
-	}
-	else if (pilihan==5){
-		Lingkaran();
-	}
-
+	while (ulang=='Y' || ulang=='y');
+		printf ("\n \t \t Terimakasih, tekan enter untuk keluar. \n");
+		
+		return 0;
 }
 
 void SegitigaSembarang(){
@@ -44,12 +66,10 @@ void SegitigaSembarang(){
 	
 	system("cls");
 	printf ("\t\t Menghitung Luas dan Keliling Segitiga Sembarang\n\n");
-	printf ("\t\t Masukkan Panjang Sisi 1 : ");
-	scanf ("%d", &s1);
-	printf ("\t\t Masukkan Panjang Sisi 2 : ");
-	scanf ("%d", &s2);
-	printf ("\t\t Masukkan Panjang Sisi 3 : ");
-	scanf ("%d", &s3);
+	printf ("\n\t\t Masukkan Panjang Sisi 1 : "); s1=validasi();
+	printf ("\n\t\t Masukkan Panjang Sisi 2 : "); s2=validasi();
+	printf ("\n\t\t Masukkan Panjang Sisi 3 : "); s3=validasi();
+
 	
 	kll = s1 + s2 + s3;
 	sp = (s1 + s2 + s3) / 2;
@@ -65,13 +85,11 @@ void BelahKetupat(){
 	float luas;
 	
 	system("cls");
-	printf ("\t\t Menghitung Luas dan Keliling Belah Ketupat\n\n");
-	printf ("\t\t Masukkan Panjang Diagonal 1 : ");
-	scanf ("%d", &d1);
-	printf ("\t\t Masukkan Panjang Diagonal 2 : ");
-	scanf ("%d", &d2);
-	printf ("\t\t Masukkan Panjang Sisi Miring : ");
-	scanf ("%d", &s_miring);
+	printf ("\n\t\t Menghitung Luas dan Keliling Belah Ketupat\n\n");
+	printf ("\n\t\t Masukkan Panjang Diagonal 1 : "); d1=validasi();
+	printf ("\n\t\t Masukkan Panjang Diagonal 2 : "); d2=validasi();
+	printf ("\n\t\t Masukkan Panjang Sisi Miring : "); s_miring=validasi();
+
 	
 	kll = 4*s_miring;
 	luas = (d1*d2)/2;
@@ -86,14 +104,11 @@ void JajarGenjang(){
 	float luas;
 	
 	system("cls");
-	printf ("\t\t Menghitung Luas dan Keliling Jajar Genjang\n\n");
-	printf ("\t\t Masukkan Panjang Sisi Miring : ");
-	scanf ("%d", &s_miring);
-	printf ("\t\t Masukkan Panjang Alas : ");
-	scanf ("%d", &alas);
-	printf ("\t\t Masukkan Tinggi : ");
-	scanf ("%d", &tinggi);
-	
+	printf ("\n\t\t Menghitung Luas dan Keliling Jajar Genjang\n\n");
+	printf ("\n\t\t Masukkan Panjang Sisi Miring : "); s_miring=validasi();
+	printf ("\n\t\t Masukkan Panjang Alas : "); alas=validasi();
+	printf ("\n\t\t Masukkan Tinggi : "); tinggi=validasi();
+
 	kll = 2*(alas+tinggi);
 	luas = alas * tinggi;
 	
@@ -107,17 +122,13 @@ void Trapesium(){
 	float luas;
 	
 	system("cls");
-	printf ("\t\t Menghitung Luas dan Keliling Trapesium\n\n");
-	printf ("\t\t Masukkan Panjang Sisi Atas : ");
-	scanf ("%d", &s_atas);
-	printf ("\t\t Masukkan Panjang Sisi Bawah : ");
-	scanf ("%d", &s_bawah);
-	printf ("\t\t Masukkan Panjang Sisi Miring 1 : ");
-	scanf ("%d", &s_miring1);
-	printf ("\t\t Masukkan Panjang Sisi Miring 2 : ");
-	scanf ("%d", &s_miring2);
-	printf ("\t\t Masukkan Tinggi : ");
-	scanf ("%d", &tinggi);
+	printf ("\n\t\t Menghitung Luas dan Keliling Trapesium\n\n");
+	printf ("\n\t\t Masukkan Panjang Sisi Atas : "); s_atas=validasi();
+	printf ("\n\t\t Masukkan Panjang Sisi Bawah : "); s_bawah=validasi();
+	printf ("\n\t\t Masukkan Panjang Sisi Miring 1 : "); s_miring1=validasi();
+	printf ("\n\t\t Masukkan Panjang Sisi Miring 2 : "); s_miring2=validasi();
+	printf ("\n\t\t Masukkan Tinggi : "); tinggi=validasi();
+
 	
 	kll = s_atas + s_bawah + s_miring1 + s_miring2;
 	luas = (s_atas + s_bawah) * tinggi /2;
@@ -133,8 +144,7 @@ void Lingkaran(){
 	
 	system("cls");
 	printf ("\t\t Menghitung Luas dan Keliling Lingkaran\n\n");
-	printf ("\t\t Masukkan Panjang Jari-Jari : ");
-	scanf ("%d", &r);
+	printf ("\n\t\t Masukkan Panjang Jari-Jari : "); r=validasi();
 	
 	kll = 2 * phi * r;
 	luas = phi * r * r;
@@ -142,4 +152,42 @@ void Lingkaran(){
 	printf ("\n\n");
 	printf ("\t\t Jadi, Kelilingnya adalah : %.2f\n", kll);
 	printf ("\t\t Jadi, Luasnya adalah : %.2f\n", luas);
+}
+
+int check(int *var){
+	char buff[1024];
+	char cek;
+	fflush(stdin);
+	if(fgets(buff, sizeof(buff), stdin) != NULL){
+		if(sscanf(buff, "%d %c", var, &cek) == 1) {
+			return 1;
+		}
+	}
+	return 0;
+}
+
+//Validasi Inputan Angka
+void correct(int *var, char *prompt){
+	while(1){
+		printf(prompt);
+		if(check(var))
+			break;
+		printf("\t\t Hanya Menerima Input ANGKA!\n");
+		printf("\n");
+	}
+}
+
+int validasi(){
+	int angka;
+    char karakter;
+    scanf("%d%c", &angka, &karakter);
+    if(karakter != '\n' || angka<0){
+        printf("\t\t\t Hanya Menerima Input ANGKA!\n\n");
+        printf("\n\t\t Masukkan ulang Angka : ");
+        fflush(stdin);
+        validasi();
+    }
+	else{
+        return angka;
+    }
 }
