@@ -5,8 +5,8 @@ void Dua ();
 void Menu();
 void Exit();
 
-// VALIDASI
 
+// VALIDASI untuk menu utama
 int validasi(){
     int bilangan;
     char huruf;
@@ -22,11 +22,10 @@ int validasi(){
     }
 }
 
-// CEK VALIDASI 
-
+// CEK VALIDASI  untuk menu 1, 2 dan perulangan
 int cek_valid();
 int cek_valid(){
-    int bilangan;
+	int bilangan;
     char huruf;
     scanf("%d%c", &bilangan,&huruf);
     if(huruf != '\n' || bilangan<0){
@@ -61,23 +60,24 @@ void Satu(){
 	printf("---------------------------------  \n\n\n");
 	
 	do{
-	printf("1. Ulangi Konversi\n");
-	printf("2. Menu Utama\n");
-	printf("3. Keluar\n");
+	printf("1. Menu Utama\n");
+	printf("2. Keluar\n");
 	printf("Pilihan Selanjutnya	: ");
 	pilih=cek_valid();
 	switch (pilih){
 		case 1:
-			Satu();
-			break;
-		case 2:
 			Menu();
 			break;
-		case 3:
-			Exit();	
-		}
+		case 2:
+			Exit();
+		default:
+			printf("EROR! \n\n");
+	
+	}
 
-	} while(pilih !=0);
+} 
+	while(pilih !=0);
+		
 }
 
 // Konversi Biner Ke Desimal
@@ -102,23 +102,25 @@ void Dua (){
 	printf("---------------------------------  \n\n\n");
 	
 	do{
-	printf("1. Ulangi Konversi\n");
-	printf("2. Menu Utama\n");
-	printf("3. Keluar\n");
+	printf("1. Menu Utama\n");
+	printf("2. Keluar\n");
 	printf("Pilihan Selanjutnya	: ");
 	pilih=cek_valid();
 	switch (pilih){
 		case 1:
-			Dua();
-			break;
-		case 2:
 			Menu();
 			break;
-		case 3:
+		case 2:
 			Exit();
-		}
-	}while(pilih !=0);
+		default:
+			printf("EROR! \n\n");
+	
+	}
 }
+		while(pilih !=0);
+
+}
+
 
 // Menu Keluar
 
@@ -127,13 +129,14 @@ void Exit(){
 	exit(0);
 }
 
+
 // Menu Utama
 
 void Menu(){
 	int pilih;
 	system ("cls");
 	printf("=======================================\n");
-	printf("|	KONVERSI BILANGAN			|\n");
+	printf("|	KONVERSI BILANGAN	      |\n");
 	printf("=======================================\n");
 	printf(" 1. Desimal Ke Biner\n");
 	printf(" 2. Biner Ke Desimal\n");
@@ -141,7 +144,7 @@ void Menu(){
 	
 	do{
 	
-	printf("MasukKan Pilihan Menu	:");
+	printf("MasukKan Pilihan Menu:");
 	pilih=validasi();
 	
 	switch(pilih){
@@ -153,8 +156,12 @@ void Menu(){
 			break;
 		case 3:
 			Exit();
-			break;	
+			break;
+		default:
+			printf("EROR! \n\n");
 		}
+	
+		
 	} while(pilih !=0);
 }
 
