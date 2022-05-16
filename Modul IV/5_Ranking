@@ -1,0 +1,214 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void tambahData();
+void sortingData();
+int clean();
+struct mahasiswa {
+	char nama[100];
+	int nilai;
+	};
+	
+int main(){
+char op, check;
+system("cls");
+
+	printf("\tProgram Ranking Nilai\n");
+	printf("\t+-------------------------------------------+\n");
+	printf("\t| MENU PROGRAM RANKING NILAI		    |\n");
+	printf("\t+-------------------------------------------+\n");
+	printf("\t| 1. Tambah Data 			    |\n");
+	printf("\t| 2. Ranking Data 			    |\n");
+	printf("\t| 3. Tutup Program			    |\n");
+	printf("\t+-------------------------------------------+\n\n");
+
+do{
+	
+	printf("\tMasukkan pilihan: ");
+	if(((scanf(" %c%c", &op, &check)) != 2 || check !='\n') && clean())
+	{
+		printf("\tInputan salah! Mohon hanya memasukkan angka dari 1 sampai 3\n\n");
+	}
+	else{
+		if(op == '1'){
+			tambahData();
+		break;
+	}
+	if(op == '2'){
+		sortingData();
+		break;
+	}
+	else if(op == '3'){
+		exit(0);
+		break;
+	}
+	else{
+		printf("\tInputan salah! Mohon hanya memasukkan angka dari 1 sampai 3\n\n");
+		}
+	}
+}while(1);
+return 0;
+}
+
+
+void tambahData(){
+	char pilih, check;
+	struct mahasiswa dataMahasiswa;
+	FILE *file;
+	system("cls");
+	printf("Masukkan Nama Mahasiswa: ");
+	scanf(" %[^\n]s", &dataMahasiswa.nama);
+
+do{
+		
+	printf("Masukkan Nilai: ");
+	if(((scanf("%d%c", &dataMahasiswa.nilai, &check))!= 2 || check != '\n') && clean()){
+	printf("Inputan salah! Mohon memasukkan nilai mulai dari 0\n\n");
+	}
+	else{
+		if(dataMahasiswa.nilai < 0){
+			printf("Inputan salah! Mohon memasukkan nilai mulai dari 0\n\n");
+		}
+		else{
+		break;
+		}
+	}
+}while(1);
+
+file = fopen("asistenin.txt","a");
+	fprintf(file,"%s\n%d\n", dataMahasiswa.nama,dataMahasiswa.nilai);
+	fclose(file);
+	printf("\nData berhasil disimpan\n");
+	printf("\nApakah ingin menginputkan data mahasiswa lainnya?\n");
+	printf("Tekan Y untuk Mengulang\n");
+	printf("M untuk Kembali ke Menu\n");
+	printf("dan T untuk Menutup Program\n");
+	
+	do{
+	printf("\nMasukkan pilihan: ");
+
+	if(((scanf(" %c%c", &pilih, &check)) != 2 || check!= '\n') && clean()){
+	printf("\nInputan salah!\n");
+	printf("\nTekan Y untuk Mengulang\n");
+	printf("M untuk Kembali ke Menu\n");
+	printf("dan T untuk Menutup Program\n");
+	}
+	else{
+		if(pilih == 'Y' || pilih == 'y'){
+		tambahData();
+		break;
+	}
+	else if(pilih == 'M' || pilih == 'm'){
+	main();
+	break;
+	}
+	else if(pilih == 'T' || pilih == 't'){
+		exit(0);
+	break;
+	}
+	else{
+		printf("\nInputan salah!\n");
+		printf("Tekan Y untuk Mengulang\n");
+		printf("M untuk Kembali ke Menu\n");
+		printf("dan T untuk Menutup Program\n");
+		}
+	}
+}while(1);
+}
+
+
+void sortingData(){
+	char pilih, check, temp[100];
+	int counter = 0, i, j, temp2;
+	FILE *file;
+	system("cls");
+	file = fopen("asistenin.txt", "r");
+	
+	if(file != 0){
+		while(fgets(temp, 100, file)) //proses memasukkan data ke variabel
+			{
+			counter++;
+			fgets(temp, 100, file);
+			}
+			
+	fclose(file);
+	
+struct mahasiswa dataMahasiswa[counter];
+file = fopen("asistenin.txt", "r");
+	for(i=0; i<counter; i++) //berfungsi untuk mengambil data nama dan nilai dari file asistenin
+	{
+		fgets(temp, 100, file);
+		temp[strcspn(temp, "\n")] = '\0'; //strcspn berfungsi untuk mencari indeks dari karakter \n di tiap line
+		strcpy(dataMahasiswa[i].nama, temp);
+		fgets(temp, 100, file);
+		temp[strcspn(temp, "\n")] = '\0';
+		dataMahasiswa[i].nilai = atoi(temp); //atoi berfungsi untuk mengubah tipe data string menjadi int
+	}
+	fclose(file);
+	for(i=0; i<counter-1; i++){
+		for(j=0; j<counter-1-i; j++){
+		if(dataMahasiswa[j].nilai < dataMahasiswa[j+1].nilai)
+		{
+			strcpy(temp,dataMahasiswa[j].nama);
+			strcpy(dataMahasiswa[j].nama,dataMahasiswa[j+1].nama);
+			strcpy(dataMahasiswa[j+1].nama,temp); //sorting nama
+			temp2 = dataMahasiswa[j].nilai;
+			dataMahasiswa[j].nilai = dataMahasiswa[j+1].nilai;
+			dataMahasiswa[j+1].nilai = temp2; //sorting nilai
+			}
+		}
+	}
+	
+file = fopen("asistenout.txt", "w");
+fprintf(file, "Nilai Mata Kuliah Algoritma dan Pemrograman\n");
+	for(i=0; i<counter; i++){
+	fprintf(file, "%d. %s %d\n", i+1,dataMahasiswa[i].nama, dataMahasiswa[i].nilai);
+	}
+fclose(file);
+	printf("Perankingan berhasil dilakukan, silahkan cek file\n");
+	}
+	else{
+		fclose(file);
+			printf("Data belum tersedia, silakan masukkan data terlebih dahulu\n");
+		}
+		printf("\nApakah ingin melakukan perankingan lagi?");
+		printf("Tekan Y untuk Mengulang\n");
+		printf("M untuk Kembali ke Menu\n");
+		printf("dan T untuk Menutup Program");
+	
+	do{
+	printf("\nMasukkan pilihan: ");
+	if(((scanf(" %c%c", &pilih, &check)) != 2 || check!= '\n') && clean()){
+		printf("Inputan salah!");
+		printf("Tekan Y untuk Mengulang\n");
+		printf("M untuk Kembali ke Menu\n");
+		printf("dan T untuk Menutup Program");
+	}
+	else{
+		if(pilih == 'Y' || pilih == 'y'){
+			sortingData();
+		break;
+	}
+	else if(pilih == 'M' || pilih == 'm'){
+	main();
+	break;
+	}
+	else if(pilih == 'T' || pilih == 't'){
+		exit(0);
+	break;
+	}
+	else{
+		printf("Inputan salah!");
+		printf("Tekan Y untuk Mengulang\n");
+		printf("M untuk Kembali ke Menu\n");
+		printf("dan T untuk Menutup Program");
+		}
+	}
+}while(1);
+}
+
+int clean(){
+	while(getchar() != '\n');
+		return 1;
+}
