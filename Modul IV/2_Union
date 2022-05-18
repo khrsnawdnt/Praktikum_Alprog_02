@@ -1,0 +1,68 @@
+#include <iostream>
+
+// PENDEKLARASIAN STRUCT UNTUK KUBUS STRUCT
+struct kubus_struct{
+    // DEKLARASI VARIABEL PADA KUBUS STRUCT
+    float sisi;
+    float volume;
+    float luas_permukaan;
+}kubus_struct; // DEFINISI UNTUK PEMANGGILAN KUBUS STRUCT
+
+// PENDEKLARASIAN UNION UNTUK KUBUS UNION
+union kubus_union{
+    // DEKLARASI VARIABEL PADA KUBUS UNION
+    float sisi;
+    float volume;
+    float luas_permukaan;
+}kubus_un; // DEFINISI UNTUK PEMANGGILAN KUBUS UNION
+
+
+
+using namespace std;
+
+int main()
+{
+    //VARIABEL SISI UNTUK PENYIMPANAN UTAMA
+    float sisi;
+    
+    //input program
+    cout<<"Sisi kubus       : ";
+    cin>>sisi;
+    
+    kubus_struct.sisi = sisi; //MEMASUKAN VARIABEL SISI UTAMA KE VARIABEL SISI STRUCT
+    
+    cout<<endl;
+    
+    // PERHITUNGAN VARIABEL VOLUME DAN PERMUKAAN PADA KUBUS STRUCT
+    kubus_struct.volume = kubus_struct.sisi*kubus_struct.sisi*kubus_struct.sisi;
+    kubus_struct.luas_permukaan = 6*kubus_struct.sisi*kubus_struct.sisi; 
+    
+    
+    //output program
+    cout<<"Kubus dengan Struct"<<endl;
+    cout<<"Sisi             : "<<kubus_struct.sisi<<endl;
+    cout<<"Luas Permukaan   : "<<kubus_struct.luas_permukaan<<endl;
+    cout<<"Volume           : "<<kubus_struct.volume<<endl;
+    cout<<endl;
+    
+    //output program
+    cout<<"Kubus dengan Union"<<endl;
+    kubus_un.sisi = sisi; // PENGISIAN VARIABEL SISI PADA KUBUS UNION
+    cout<<"Sisi             : "<<kubus_un.sisi<<endl;
+    kubus_un.luas_permukaan = 6*sisi*sisi; //PENGISIAN VARIABEL LUAS PERMUKAAN PADA KUBUS UNION
+    cout<<"Luas Permukaan   : "<<kubus_un.luas_permukaan<<endl;
+    kubus_un.volume = sisi*sisi*sisi; // PENGISAN VARIABEL VOLUME PADA KUBUS UNION
+    cout<<"Volume           : "<<kubus_un.volume<<endl;
+
+    //PS : PENGISIAN VARIABEL PADA UNION HARUS DILAKUKKAN SECARA TERPISAH SEBELUM PEMANGGILAN VARIABEL
+    //DIKARENAKAN UNION MEMILIKI SIFAT DIMANA SETIAP VARIABEL YANG DIUBAH MAKA AKAN OTOMATIS MENGUBAH VARIABEL LAINNYA
+    
+    cout<<endl;
+    
+    // CEK MEMORI PADA MASING KUBUS STRUCT DAN KUBUS UNION
+    cout<<"Ukuran memory pada kubus Struct : "<<sizeof(kubus_struct)<<endl;
+    cout<<"Ukuran memory pada kubus Union : "<<sizeof(kubus_un)<<endl;
+    
+    
+    return 0;
+}
